@@ -1,0 +1,241 @@
+"Screen2 As screen.'tabletLayout_HeaderAndGallery_ver3.0'":
+    Fill: =RGBA(204, 231, 246, .3)
+    OnVisible: |-
+        =UpdateContext({varPopUp: false});
+        UpdateContext({incorrectPasswordNotification: false})
+
+    Rectangle2 As rectangle:
+        Fill: =RGBA(204, 231, 246, 1)
+        Height: =50
+        Width: =768
+        Y: =114
+        ZIndex: =1
+
+    RectQuickActionBar1 As rectangle:
+        Height: =64
+        Width: =Parent.Width
+        ZIndex: =2
+
+    Title1 As label:
+        Align: =Align.Center
+        Fill: =RGBA(102, 182, 227, 1)
+        Height: =64
+        PaddingRight: =10
+        Text: ="Scanned in Today"
+        Width: =Parent.Width
+        ZIndex: =3
+
+    "TemplateGalleryList1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =862
+        Items: |-
+            =SortByColumns(
+                Search(Scans, searchBox.Text, "StudentNumber","FirstName", "LastName"),
+                "When",If(SortDescending1, Descending, Ascending))
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =45
+        Width: =768
+        Y: =162
+        ZIndex: =4
+
+        Title2 As label:
+            Height: =30
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =12
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =117
+            X: =12
+            Y: =10
+            ZIndex: =2
+
+        Subtitle1 As label:
+            Height: =19
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =11
+            Text: =ThisItem.'Student Number'
+            VerticalAlign: =VerticalAlign.Top
+            Width: =82
+            X: =141
+            Y: =12
+            ZIndex: =3
+
+        Separator1 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        Label2 As label:
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.'First Name'
+            Width: =103
+            X: =223
+            ZIndex: =6
+
+        Label3 As label:
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.'Last Name'
+            Width: =139
+            X: =327
+            ZIndex: =7
+
+        Label4 As label:
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.'Job Title/Project Name'
+            Width: =149
+            X: =467
+            ZIndex: =8
+
+        Label7 As label:
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.When
+            Width: =133
+            X: =617
+            Y: =3
+            ZIndex: =11
+
+        Rectangle1 As rectangle:
+            Height: =44
+            OnSelect: =Select(Parent)
+            Width: |
+                =1
+            X: =129
+            ZIndex: =12
+
+        Rectangle1_1 As rectangle:
+            Height: =44
+            OnSelect: =Select(Parent)
+            Width: |
+                =1
+            X: =216
+            ZIndex: =13
+
+        Rectangle1_3 As rectangle:
+            Height: =44
+            OnSelect: =Select(Parent)
+            Width: |
+                =1
+            X: =326
+            ZIndex: =14
+
+        Rectangle1_4 As rectangle:
+            Height: =44
+            OnSelect: =Select(Parent)
+            Width: |
+                =1
+            X: =466
+            ZIndex: =15
+
+        Rectangle1_5 As rectangle:
+            Height: =44
+            OnSelect: =Select(Parent)
+            Width: |
+                =1
+            X: =616
+            ZIndex: =16
+
+    Label8 As label:
+        Size: =11
+        Text: ="Type"
+        Width: =87
+        X: =16
+        Y: =124
+        ZIndex: =5
+
+    Label9 As label:
+        Size: =11
+        Text: ="Student No."
+        Width: =83
+        X: =133
+        Y: =124
+        ZIndex: =6
+
+    Label10 As label:
+        Size: =11
+        Text: ="First Name"
+        Width: =96
+        X: =222
+        Y: =119
+        ZIndex: =7
+
+    Label11 As label:
+        Size: =11
+        Text: ="Last Name"
+        Width: =122
+        X: =328
+        Y: =119
+        ZIndex: =8
+
+    Label12 As label:
+        Size: =11
+        Text: ="Job Titile / Project Name"
+        Width: =140
+        X: =467
+        Y: =119
+        ZIndex: =9
+
+    Label13 As label:
+        Size: =11
+        Text: ="Time"
+        X: =618
+        Y: =119
+        ZIndex: =10
+
+    Icon1 As icon.BackArrow:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Back(ScreenTransition.UnCoverRight);
+        Width: =50
+        X: =34
+        Y: =7
+        ZIndex: =11
+
+    searchBox As text:
+        Default: =""
+        HintText: ="Search"
+        Width: =360
+        X: =204
+        Y: =68
+        ZIndex: =12
+
+    Rectangle3 As rectangle:
+        Fill: =RGBA(251, 188, 159, 1)
+        Height: =50
+        Width: =50
+        X: =718
+        Y: =114
+        ZIndex: =13
+
+    Icon3 As icon.ArrowsUpDown:
+        Height: =32
+        Icon: =Icon.Sort
+        Width: =32
+        X: =727
+        Y: =123
+        ZIndex: =14
+
+    Rectangle4 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =50
+        OnSelect: |-
+            =UpdateContext({SortDescending1: !SortDescending1})
+        Width: =50
+        X: =718
+        Y: =114
+        ZIndex: =15
+

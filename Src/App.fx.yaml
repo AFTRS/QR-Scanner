@@ -1,0 +1,12 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Set(VarStartTimer, false);
+        Set(varSuccessMessage, false);
+        Set(varErrorMessage, false);
+        Set(varErrorFN, false);
+        Set(varErrorLN, false);
+        Set(varErrorPhone, false);
+        Set(varIncorrectPasswordNotification, false);
+        Set(varPopUp, false);
+

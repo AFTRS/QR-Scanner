@@ -1,0 +1,385 @@
+Screen1 As screen:
+    Fill: =RGBA(0, 13, 75, 1)
+    OnVisible: =
+
+    Button1_1 As button:
+        Align: =Align.Left
+        BorderColor: =RGBA(255, 0, 0, 1)
+        BorderThickness: =3
+        Fill: =RGBA(102, 182, 227, 1)
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Normal
+        Height: =80
+        HoverBorderColor: =RGBA(255, 255, 0, 1)
+        HoverFill: =
+        OnSelect: =
+        PaddingLeft: =15
+        PressedBorderColor: =
+        PressedColor: =
+        Size: =30
+        Text: =""
+        Visible: |
+            =true
+        Width: =86
+        X: =645
+        Y: =176
+        ZIndex: =1
+
+    Button2 As button:
+        BorderColor: =RGBA(255, 0, 0, 1)
+        BorderThickness: =3
+        Fill: =RGBA(102, 182, 227, 1)
+        Height: =80
+        Text: =""
+        Width: =175
+        X: =34
+        Y: =898
+        ZIndex: =2
+
+    Image6 As image:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Height: =59
+        Image: ='scan-icon'
+        Width: =94
+        X: =124
+        Y: =909
+        ZIndex: =3
+
+    TextBox As button:
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =220
+        Text: =""
+        Width: =700
+        X: =34
+        Y: =644
+        ZIndex: =4
+
+    Circle1 As circle:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =350
+        Width: =350
+        X: =209
+        Y: =211
+        ZIndex: =5
+
+    Heading As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(102, 182, 227, 1)
+        Font: =Font.Lato
+        Height: =143
+        PaddingBottom: =3.75
+        PaddingLeft: =3.75
+        Size: =35.98
+        Text: =""
+        Width: =768
+        Y: =0.00
+        ZIndex: =6
+
+    Image1 As image:
+        Height: =123
+        Image: ='QR-icon'
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Width: =127
+        X: =15
+        Y: =8.25
+        ZIndex: =7
+
+    BarcodeScanner1 As barcodeScanner:
+        Align: =Align.Left
+        BorderColor: =RGBA(255, 0, 0, 1)
+        BorderThickness: =3
+        Fill: =RGBA(0, 0, 0, 0)
+        Font: =Font.Lato
+        FontWeight: =FontWeight.Normal
+        Height: =80
+        HoverBorderColor: =RGBA(255, 255, 0, 1)
+        HoverFill: =
+        OnScan: |-
+            =ClearCollect(person,Split(BarcodeScanner1.Value, ",")); If(First(person).Result <> Last(FirstN(person, 3)).Result, Patch(Scans, {Title: First(person).Result, 'Student Number': Last(FirstN(person, 2)).Result,'First Name': Last(FirstN(person, 3)).Result,'Last Name': Last(FirstN(person, 4)).Result, 'Job Title/Project Name': Last(FirstN(person, 5)).Result, Email: Last(FirstN(person, 6)).Result, Phone: Last(FirstN(person, 7)).Result, When: Now()});Reset(ScanSuccessSFX);Set(varSoundSuccess,false);Set(varSoundSuccess,true),Reset(ScanFailSFX);Set(varSoundFail,false);Set(varSoundFail,true)); Set(VarStartTimer,true);
+        PaddingBottom: =3.75
+        PaddingLeft: =15
+        Size: =30
+        Text: ="Scan"
+        Width: =175
+        X: =34
+        Y: =898
+        ZIndex: =8
+
+    MessageText As label:
+        Color: =If(First(person).Result <> Last(FirstN(person, 2)).Result, Green, Red)
+        DisplayMode: =DisplayMode.View
+        Font: =Font.'Lato Black'
+        FontWeight: =FontWeight.Bold
+        Height: =219
+        PaddingBottom: =3.75
+        PaddingLeft: =3.75
+        Size: =36
+        Text: =If(First(person).Result <> Last(FirstN(person, 3)).Result, "Thanks " & Last(FirstN(person, 3)).Result & ","& Char(10) &"Have a really great day", "Incorrect barcode scanned,"& Char(10) &"Please try again")
+        Width: =678
+        X: =56
+        Y: =644
+        ZIndex: =9
+
+    Timer1 As timer:
+        Duration: =2000
+        Height: =29.99
+        OnTimerEnd: =Select(BarcodeScanner1); Reset(Timer1); Set(VarStartTimer,false);
+        PaddingBottom: =3.75
+        PaddingLeft: =3.75
+        Reset: =true
+        Size: =9.75
+        Start: =VarStartTimer
+        Visible: =false
+        X: =56
+        Y: =113.94
+        ZIndex: =10
+
+    Frown As icon.EmojiFrown:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =299.85
+        Icon: =Icon.EmojiFrown
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Visible: =If(First(person).Result <> Last(FirstN(person, 2)).Result, false, true)
+        Width: =400
+        X: =184
+        Y: =236.88
+        ZIndex: =11
+
+    Smile As icon.EmojiSmile:
+        Color: =RGBA(54, 176, 75, 1)
+        Height: =299.85
+        Icon: =Icon.EmojiSmile
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        Visible: =If(First(person).Result <> Last(FirstN(person, 2)).Result, true, false)
+        Width: =400
+        X: =184
+        Y: =236.88
+        ZIndex: =12
+
+    ScanSuccessSFX As audioPlayback:
+        Height: =48.73
+        Media: =SuccessSFX_1
+        Start: =varSoundSuccess
+        Visible: =false
+        X: =142
+        Y: =92.20
+        ZIndex: =13
+
+    ScanFailSFX As audioPlayback:
+        Height: =48.73
+        Media: =FailSFX_1
+        Start: =varSoundFail
+        Visible: =false
+        X: =142
+        Y: =92.20
+        ZIndex: =14
+
+    Image2 As image:
+        Height: =76
+        Image: ='aftrs-logo'
+        Width: =464
+        X: =163
+        Y: =19
+        ZIndex: =15
+
+    Label1 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Font: =Font.Lato
+        Size: =26
+        Text: ="Please scan your QR code"
+        Width: =472
+        X: =196
+        Y: =96
+        ZIndex: =16
+
+    "'Group-AddButton_1' As group":
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =21
+
+        Button6_1 As button:
+            Fill: =RGBA(102, 182, 227, 1)
+            Height: =80
+            OnSelect: =Navigate(Screen3,ScreenTransition.Cover)
+            Text: =""
+            Width: =168
+            X: =563
+            Y: =899
+            ZIndex: =19
+
+        Icon6_1 As icon.AddUser:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =55
+            Icon: =Icon.AddUser
+            OnSelect: =Navigate(Screen3,ScreenTransition.Cover)
+            Width: =60
+            X: =659
+            Y: =912
+            ZIndex: =20
+
+        "'Button-Add_1' As button":
+            Align: =Align.Left
+            BorderColor: =RGBA(255, 0, 0, 1)
+            BorderThickness: =3
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =80
+            HoverBorderColor: =RGBA(255, 255, 0, 1)
+            HoverFill: =
+            OnSelect: =Navigate(Screen3,ScreenTransition.Cover)
+            PaddingLeft: =20
+            Size: =30
+            Text: ="Add"
+            Width: =168
+            X: =563
+            Y: =899
+            ZIndex: =21
+
+    Group4 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =21
+
+        Image5 As image:
+            Height: =53
+            Image: ='log-icon'
+            OnSelect: =Navigate(Screen2,ScreenTransition.Cover)
+            Visible: |
+                =true
+            Width: =86
+            X: =645
+            Y: =190
+            ZIndex: =17
+
+        Button1 As button:
+            Align: =Align.Left
+            BorderColor: =RGBA(255, 0, 0, 1)
+            BorderThickness: =3
+            Fill: =RGBA(0, 0, 0, 0)
+            Font: =Font.Lato
+            FontWeight: =FontWeight.Normal
+            Height: =80
+            HoverBorderColor: =RGBA(255, 255, 0, 1)
+            HoverFill: =
+            OnSelect: |-
+                =Reset(txtPassword);
+                UpdateContext({varPopUp: true});
+            PaddingLeft: =15
+            PressedBorderColor: =
+            PressedColor: =
+            Size: =30
+            Text: =""
+            Visible: |
+                =true
+            Width: =86
+            X: =645
+            Y: =176
+            ZIndex: =18
+
+    incorrectPasswordNotification As button:
+        DisabledColor: =RGBA(0, 0, 0, 1)
+        DisabledFill: =RGBA(238, 204, 204, 1)
+        DisplayMode: =DisplayMode.Disabled
+        Fill: =RGBA(56, 96, 178, .9)
+        Height: =65
+        Text: ="Incorrect password"
+        Visible: =varIncorrectPasswordNotification
+        Width: =236
+        X: =286
+        Y: =355
+        ZIndex: =29
+
+    popUpScreen As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =29
+
+        Popup As rectangle:
+            Fill: =RGBA(136, 160, 209, .9)
+            Height: =1024
+            Visible: =varPopUp
+            Width: =768
+            ZIndex: =22
+
+        Button3 As button:
+            DisabledBorderColor: =RGBA(0, 0, 0, 1)
+            DisabledFill: =RGBA(0, 0, 0, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =134
+            Text: =""
+            Visible: =varPopUp
+            Width: =550
+            X: =109
+            Y: =430
+            ZIndex: =23
+
+        txtPassword As text:
+            Default: |
+                =""
+            Height: =48
+            Mode: =TextMode.Password
+            Size: =18
+            Visible: =varPopUp
+            Width: =324
+            X: =279
+            Y: =472
+            ZIndex: =24
+
+        Label5 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =59
+            Size: =18
+            Text: |-
+                ="Password:"
+            Visible: =varPopUp
+            Width: =129
+            X: =150
+            Y: =466
+            ZIndex: =25
+
+        btnClose As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =48
+            OnSelect: |-
+                =UpdateContext({varPopUp:false});
+                UpdateContext({varIncorrectPasswordNotification:false});
+            Size: =18
+            Text: ="Close"
+            Visible: =varPopUp
+            Width: =161
+            X: =498
+            Y: =596
+            ZIndex: =26
+
+        btnSignIn As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =48
+            OnSelect: |-
+                =If(txtPassword.Text = "0837"
+                ,
+                Navigate(Screen2,ScreenTransition.Cover);
+                UpdateContext({varIncorrectPasswordNotification: false}); 
+                UpdateContext({varPopUp: false});
+                Reset(txtPassword);
+                ,
+                UpdateContext({varIncorrectPasswordNotification: true}); 
+                Reset(txtPassword));
+            Size: =18
+            Text: ="Sign In"
+            Visible: =varPopUp
+            Width: =161
+            X: =109
+            Y: =596
+            ZIndex: =28
+

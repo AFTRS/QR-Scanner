@@ -1,0 +1,50 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+    "CdpRevision": {
+      "BaseUrl": "/",
+      "LastChangedTimeString": "2021-09-30T16:42:33.9970000Z",
+      "RevisionNumber": 1
+    },
+    "ConnectedDataSourceInfoNameMapping": {
+      "{Attachments}": "Attachments",
+      "{Attachments}@odata.type": "{Attachments} ({Attachments}@odata.type)",
+      "{FilenameWithExtension}": "File name with extension",
+      "{FullPath}": "Full Path",
+      "{HasAttachments}": "Has attachments",
+      "{Identifier}": "Identifier",
+      "{IsFolder}": "IsFolder",
+      "{Link}": "Link to item",
+      "{ModerationComment}": "Comments associated with the content approval of this list item",
+      "{ModerationStatus}": "Content approval status",
+      "{Name}": "Name",
+      "{Path}": "Folder path",
+      "{Thumbnail}": "Thumbnail",
+      "{TriggerWindowEndToken}": "Trigger Window End Token",
+      "{TriggerWindowStartToken}": "Trigger Window Start Token",
+      "{VersionNumber}": "Version number",
+      "Author": "Created By",
+      "Author#Claims": "Created By Claims",
+      "ComplianceAssetId": "Compliance Asset Id",
+      "Created": "Created",
+      "Editor": "Modified By",
+      "Editor#Claims": "Modified By Claims",
+      "Email": "Email",
+      "FirstName": "First Name",
+      "ID": "ID",
+      "JobTitle_x002f_ProjectName": "Job Title/Project Name",
+      "LastName": "Last Name",
+      "Modified": "Modified",
+      "Phone": "Phone",
+      "StudentNumber": "Student Number",
+      "Title": "Title",
+      "When": "When"
+    },
+    "DatasetName": "https://aftrs.sharepoint.com/sites/QRScanner",
+    "EncodeDataset": true,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "Scans",
+    "Type": "ConnectedDataSourceInfo"
+  }
+]
